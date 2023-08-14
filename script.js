@@ -5,7 +5,8 @@ let noArticle={};
 let temp=[];
 for(int i=0;i<touristSpots.length;i++)
 {
-	let t=touristSpots[i].split("");//The ,Virupaksha ,Temple
+	let sub=touristSpots[i];
+	let t=sub.split(" ");//The ,Virupaksha ,Temple
 	let nArt="";
 	for(let j=0;j<t.length;j++)
 		{
@@ -13,7 +14,7 @@ for(int i=0;i<touristSpots.length;i++)
 			if(c!='a' || c!='an' || c!='the')
 			{
 				nArt=nArt+t[j]+" ";
-				console.log(nArt);
+				// console.log(nArt);
 			}
 		}
 	nArt.trim();
