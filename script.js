@@ -1,31 +1,16 @@
-//your code here
-let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
-let noArticle={};
+let bandNames = ['The Beatles', 'Led Zeppelin', 'Pink Floyd', 'The Rolling Stones', 'Queen', 'Aerosmith'];
 
-let temp=[];
-for(int i=0;i<touristSpots.length;i++)
-{
-	let sub=touristSpots[i];
-	let t=sub.split(" ");//The ,Virupaksha ,Temple
-	let nArt="";
-	for(let j=0;j<t.length;j++)
-		{
-			let c=t[j].toLowerCase();
-			if(c!='a' || c!='an' || c!='the')
-			{
-				nArt=nArt+t[j]+" ";
-				// console.log(nArt);
-			}
-		}
-	nArt.trim();
-	temp.push(nArt);
-	setattr(noArticle, nArt, touristSpots[i]);
-	
+function stripArticles(name) {
+  return name.replace(/^(a|an|the)\s+/i, '');
 }
 
-document.getElementById("bands").innerHTML=temp;
+// Sort the band names while ignoring articles
+bandNames.sort((a, b) => stripArticles(a).localeCompare(stripArticles(b)));
 
-
-
-
-
+// Generate the HTML list
+const ulElement = document.getElementById('band');
+bandNames.forEach(name => {
+  const liElement = document.createElement('li');
+  liElement.textContent = name;
+  ulElement.appendChild(liElement);
+});
