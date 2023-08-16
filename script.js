@@ -1,16 +1,28 @@
-let bandNames = ['The Beatles', 'Led Zeppelin', 'Pink Floyd', 'The Rolling Stones', 'Queen', 'Aerosmith'];
-
+let bandNames = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
+let ans=[];
 function stripArticles(name) {
-  return name.replace(/^(a|an|the)\s+/i, '');
+  const articles = ['a', 'an', 'the'];
+  for (const article of articles) {
+    if (name.toLowerCase().startsWith(article + ' ')) {
+      return name.slice(article.length + 1);
+    }
+  }
+  return name;
 }
 
-// Sort the band names while ignoring articles
-bandNames.sort((a, b) => stripArticles(a).localeCompare(stripArticles(b)));
+function customSort(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      if (stripArticles(arr[j]) > stripArticles(arr[j + 1])) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+    }
+  }
+}
 
-// Generate the HTML list
-const ulElement = document.getElementById('band');
+customSort(bandNames);
+
 bandNames.forEach(name => {
-  const liElement = document.createElement('li');
-  liElement.textContent = name;
-  ulElement.appendChild(liElement);
+ans.push(name)
 });
+console.log(ans);
